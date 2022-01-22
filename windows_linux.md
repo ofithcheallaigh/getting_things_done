@@ -5,7 +5,7 @@ These notes will provide links and information on how to set up Linux on a Windo
 
 # Table of Contents
 1. [Enabling Windows Subsystem for Linux](#enabling-windows-subsystem-for-linux)
-2. []()     
+2. [Installing Atom for Linux](#installing-atom-for-linux)     
 3. [Sources](#sources)
 
 # Enabling Windows Subsystem for Linux
@@ -38,6 +38,30 @@ Open the [Microsoft Store](https://aka.ms/wslstore). Here, select the disto you 
 Once installed, you will be asked to provide a username and password.
 
 # Installing Atom for Linux    
+**Step 1:**     
+Download Atom from the [official website](https://atom.io/).     
+
+**Step 2:**    
+Add Atom to the Windows environment variables path. This can be done a number of was.
+- In Windows, search for "Edit the system environment variables"
+- Press `win+r` and type `SystemPropertiesAdvanced.exe`    
+
+
+![alt text](Images/path1.png)
+
+With the system properties window open, in the `Environment Variables` section, and then in the `System Variables` window, open the `Path` variable. The three windows you will need are shown above.       
+
+The image above shows how Atom is added to the path. The user needs to locate the `bin` folder for Atom. If installed with the default settings it can typically be found in: `C:\Users\<user-name>\AppData\Local\atom\bin`     
+
+**Step 3:**   
+Now we need to make WSL aware of Atom. This is done my altering the `bashrc` file. This file can be opened with `vim` text editor, however, I have found `nano` to be easier to use. This can be installed with the following commands:
+
+* `sudo apt update`: this updates all repositories     
+* `sudo apt install nano`: this installs Nano     
+
+**Step 4:**     
+with `nano` installed, enter the following command: `nano ~/.bashrc`, and using the down arrow, move to the bottom of the file and add the following: `alias atom="/mnt/c/Windows/System32/cmd.exe /c 'atom'"`, then save and exit the file (commands for this will be shown at the bottom of the editor). The final. important step is to source the `bashrc` file again, by using: `source ~/.bashrc`. Now, we can open Atom using `atom . &`   
+
 
 Notes for this section:  
 - https://medium.com/@rhdzmota/python-development-on-the-windows-subsystem-for-linux-wsl-17a0fa1839d     
